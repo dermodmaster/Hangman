@@ -27,11 +27,11 @@ public class WordQuiz {
      */
     public WordQuiz(int wordLength, int remainingAttemps, ConsoleReader consoleReader, WordlistReader wordlistReader){
         //TODO: choose random word ´with wordLength
-        this.quizword = "";
         this.guessedLetters = new char[remainingAttemps];
         this.remainingAttemps = remainingAttemps;
         this.consoleReader = consoleReader;
         this.wordlistReader = wordlistReader;
+        this.quizword = wordlistReader.getRandomWordFromList();
     }
 
     /**
@@ -66,7 +66,6 @@ public class WordQuiz {
      * TODO: not sure if you ha
      */
     protected void uncover(char character, int index){
-
 
     }
 

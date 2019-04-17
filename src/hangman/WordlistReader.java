@@ -19,7 +19,7 @@ public class WordlistReader {
 
     /**
      * Constructor for WordlistReader
-     * @param file zu erratendes Wort
+     * @param file zu filepath for the file with words in it
      */
     public WordlistReader(String file) throws IOException {
         this.wordlist = new ArrayList<>();
@@ -55,6 +55,11 @@ public class WordlistReader {
         return result;
     }
 
+    public String getRandomWordFromList() {
+        int random = (int) (Math.random()*wordlist.size());
+        return wordlist.get(random);
+    }
+
     /**
      * Returns all words from wordlist
      * @return returns all words in the List
@@ -62,4 +67,6 @@ public class WordlistReader {
     public List<String> getAllWords() {
         return this.wordlist;
     }
+
+
 }
