@@ -35,6 +35,8 @@ public class WordlistReader {
         Path filePath = new File(file).toPath();
         wordlist = Files.readAllLines(filePath);
 
+        if (wordlist.isEmpty()) throw new IOException("The file couldn't be read or is empty!");
+
         return true;
     }
 

@@ -48,6 +48,8 @@ public class WordQuiz {
 
         System.out.println("~~~~~~~~~~~~~GAME START~~~~~~~~~~~~~~");
         System.out.println();
+        System.out.printf("The length of the word is: %d%n", quizword.length());
+        System.out.println();
 
         while ((this.remainingAttemps > 0) || !gameEnd){
             printGameInfo();
@@ -57,7 +59,7 @@ public class WordQuiz {
             if (compareInput(guessedChar) == 1){
                 for (int i = 0; i < quizword.length(); i++){
                     if (quizword.charAt(i) == guessedChar){
-                        guessedWord[i] = guessedChar;
+                        uncover(guessedChar, i);
                     }
                 }
             }
