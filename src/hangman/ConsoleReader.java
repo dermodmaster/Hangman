@@ -39,7 +39,6 @@ public class ConsoleReader {
 
         character = character_string.charAt(0);
         return character;
-
     }
 
     /**

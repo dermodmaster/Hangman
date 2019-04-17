@@ -11,12 +11,12 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
 
-        //WordlistReader wr = new WordlistReader("Test");
-        //System.out.println(wr.getAllWords());
+        WordlistReader wr = new WordlistReader("Test");
+        System.out.println(wr.getAllWords());
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        ConsoleReader reader = new ConsoleReader(br);
-        System.out.println(reader.readNextChar());
+        //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+       // ConsoleReader reader = new ConsoleReader(br);
+       // System.out.println(reader.readNextChar());
 
     }
 

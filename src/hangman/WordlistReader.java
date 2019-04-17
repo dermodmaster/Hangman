@@ -14,13 +14,15 @@ import java.util.stream.Collectors;
 public class WordlistReader {
 
     private List<String> wordlist;
-    private String src = "C:\\Users\\GRKE\\Desktop\\Galgenmännchen\\src\\hangman\\wordlist.txt";
+    private String src = "C:\\Users\\GRKE\\Desktop\\Hangman\\src\\hangman\\wordlist.txt";
 
     /**
      * Constructor for WordlistReader
      * @param filepath zu erratendes Wort
      */
     public WordlistReader(String filepath){
+        this.wordlist = new ArrayList<>();
+        readListFromFile();
         this.src = filepath;
     }
 
@@ -30,17 +32,17 @@ public class WordlistReader {
      */
     protected boolean readListFromFile(){
 
-        List<String> result = new ArrayList<>();
-
         try(BufferedReader br = new BufferedReader(new FileReader(src))){
-            result.add(br.lines().collect(Collectors.joining(System.lineSeparator())));
+            String line;
+            while ((line = br.readLine()) != null){
+                wordlist.add(line);
+            }
             return true;
         }
         catch (IOException e){
             e.printStackTrace();
             return false;
         }
-
     }
 
     /**
