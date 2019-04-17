@@ -1,9 +1,10 @@
 package hangman;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Klasse zum lesen einer Liste mit zu erratenden Wörtern aus einer Textdatei
@@ -14,15 +15,15 @@ import java.util.stream.Collectors;
 public class WordlistReader {
 
     private List<String> wordlist;
-    private String src;
+    private String file;
 
     /**
      * Constructor for WordlistReader
-     * @param filepath zu erratendes Wort
+     * @param file zu erratendes Wort
      */
-    public WordlistReader(String filepath){
+    public WordlistReader(String file) throws IOException {
         this.wordlist = new ArrayList<>();
-        this.src = filepath;
+        this.file = file;
         readListFromFile();
     }
 
@@ -30,19 +31,11 @@ public class WordlistReader {
      * Reads a specified file into a List
      * @return true if done correctly, else false
      */
-    protected boolean readListFromFile(){
+    protected boolean readListFromFile() throws IOException {
+        Path filePath = new File(file).toPath();
+        wordlist = Files.readAllLines(filePath);
 
-        try(BufferedReader br = new BufferedReader(new FileReader(src))){
-            String line;
-            while ((line = br.readLine()) != null){
-                wordlist.add(line);
-            }
-            return true;
-        }
-        catch (IOException e){
-            e.printStackTrace();
-            return false;
-        }
+        return true;
     }
 
     /**
@@ -69,8 +62,5 @@ public class WordlistReader {
     public List<String> getAllWords() {
         return this.wordlist;
     }
-
-
-
-
+    
 }
