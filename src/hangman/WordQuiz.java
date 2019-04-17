@@ -26,6 +26,7 @@ public class WordQuiz {
      * @param wordlistReader Wordlist Reader
      */
     public WordQuiz(int wordLength, int remainingAttemps, ConsoleReader consoleReader, WordlistReader wordlistReader){
+        //TODO: choose random word ´with wordLength
         this.quizword = "";
         this.guessedLetters = new char[remainingAttemps];
         this.remainingAttemps = remainingAttemps;
@@ -74,14 +75,33 @@ public class WordQuiz {
      */
     private void printGameInfo(){
 
+        // create and fill guessed words with _
+        String[] guessedWord = new String[this.quizword.length()];
+        for (int i = 0; i < guessedWord.length; i++){
+            guessedWord[i] = "TEST";
+        }
+
+        // print remainingAttempts
         System.out.printf("Remaining Attemps: %d%n", this.remainingAttemps);
 
-        StringBuilder guessed = new StringBuilder();
+        //print guessedletters
+        String builder = "";
         for (char character : guessedLetters){
-            guessed.append(character);
+            builder += character;
         }
-        System.out.printf("Guessed letters: %s%n", guessed);
+        System.out.printf("Guessed letters: %s%n", builder);
 
+
+        //MAGIC to fill and compare guessed word
+        //Maybe in another Method
+
+
+        // print the current guessedWord
+        builder = "";
+        for (int i = 0; i < guessedWord.length; i++){
+            builder += guessedWord[i];
+        }
+        System.out.printf("Quizword: %s%n", builder);
     }
 
 
