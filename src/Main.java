@@ -17,7 +17,7 @@ public class Main {
                 15,
                 new ConsoleReader(new BufferedReader(new InputStreamReader(System.in))),
                 new WordlistReader("res/wordlist.txt")
-                );
+        );
 
         daQuiz.playGame();
 

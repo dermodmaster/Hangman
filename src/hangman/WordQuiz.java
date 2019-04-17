@@ -26,7 +26,7 @@ public class WordQuiz {
      * @param wordlistReader Wordlist Reader
      */
     public WordQuiz(int wordLength, int remainingAttemps, ConsoleReader consoleReader, WordlistReader wordlistReader){
-        //TODO: choose random word ´with wordLength
+        //TODO: choose random word with wordLength
         this.guessedLetters = new char[remainingAttemps];
         this.remainingAttemps = remainingAttemps;
         this.consoleReader = consoleReader;
@@ -38,12 +38,23 @@ public class WordQuiz {
      * Starts the hangman game
      */
     public void playGame()throws IOException {
+
+        boolean gameEnd = false;
+
         System.out.println("~~~~~~~~~~~~~GAME START~~~~~~~~~~~~~~");
         System.out.println();
-        printGameInfo();
+
+        // Solange printGameInfo und andere Methode zur Eingabe,Vergleich bis game ende
+        while (!gameEnd){
+            printGameInfo();
 
 
+            // if x --> gameEnd = true
+        }
 
+
+        // Message won/lose
+        // then system.exit
 
 
 
@@ -52,20 +63,24 @@ public class WordQuiz {
     /**
      * Compares the input to the quizword
      * @param character character
-     * @return 1=equals, 0=not equal, -1= error
+     * @return 1=equals, 0=not equal, //-1= error
+     * TODO: HÄLP
      */
     protected int copareInput(char character){
-
-        return 0;
+        if (equals(character))
+            return 1;
+        else {
+            return 0;
+        }
     }
 
     /**
-     * Uncovers the letters of the word
-     * @param character character to uncover
-     * @param index index of the word
-     * TODO: not sure if you ha
+     * ?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?
+     * @param character ja ne
+     * @param i is klar
+     * TODO: dafuq !?!?!?!?!?
      */
-    protected void uncover(char character, int index){
+    protected void uncover(char character, int i){
 
     }
 
@@ -77,7 +92,7 @@ public class WordQuiz {
         // create and fill guessed words with _
         String[] guessedWord = new String[this.quizword.length()];
         for (int i = 0; i < guessedWord.length; i++){
-            guessedWord[i] = "TEST";
+            guessedWord[i] = "_ ";
         }
 
         // print remainingAttempts
