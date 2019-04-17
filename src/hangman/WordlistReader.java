@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
  * Klasse zum lesen einer Liste mit zu erratenden Wörtern aus einer Textdatei
  * 17.04.2019
  * @author Daniel Marten
+ * TODO: relocate wordlist to recourse folder
  */
 public class WordlistReader {
 
@@ -17,10 +18,10 @@ public class WordlistReader {
 
     /**
      * Constructor for WordlistReader
-     * @param string zu erratendes Wort
+     * @param filepath zu erratendes Wort
      */
-    public WordlistReader(String string){
-
+    public WordlistReader(String filepath){
+        this.src = filepath;
     }
 
     /**
@@ -51,9 +52,9 @@ public class WordlistReader {
 
         List<String> result = new ArrayList<>();
 
-        for (String str : wordlist){
-            if (str.length()==length){
-                result.add(str);
+        for (String word : wordlist){
+            if (word.length()==length){
+                result.add(word);
             }
         }
         return result;
@@ -61,7 +62,7 @@ public class WordlistReader {
 
     /**
      * Returns all words from wordlist
-     * @return
+     * @return returns all words in the List
      */
     public List<String> getAllWords() {
         return this.wordlist;
