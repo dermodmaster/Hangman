@@ -62,5 +62,4 @@ public class WordlistReader {
     public List<String> getAllWords() {
         return this.wordlist;
     }
-    
 }
