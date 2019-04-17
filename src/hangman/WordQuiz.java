@@ -45,11 +45,11 @@ public class WordQuiz {
         System.out.println();
 
         // Solange printGameInfo und andere Methode zur Eingabe,Vergleich bis game ende
-        while (!gameEnd){
+        while (this.remainingAttemps > 0 || false){
             printGameInfo();
 
 
-            // if x --> gameEnd = true
+            this.remainingAttemps--;
         }
 
 
@@ -66,7 +66,7 @@ public class WordQuiz {
      * @return 1=equals, 0=not equal, //-1= error
      * TODO: HÄLP
      */
-    protected int copareInput(char character){
+    protected int compareInput(char character){
         if (equals(character))
             return 1;
         else {
@@ -107,7 +107,7 @@ public class WordQuiz {
 
 
         //MAGIC to fill and compare guessed word
-        //Maybe in another Method
+        //Maybe in (another Method) playgame
 
 
         // print the current guessedWord
