@@ -1,4 +1,5 @@
 import hangman.ConsoleReader;
+import hangman.WordQuiz;
 import hangman.WordlistReader;
 
 import java.io.BufferedReader;
@@ -11,12 +12,14 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
 
-        WordlistReader wr = new WordlistReader("Test");
-        System.out.println(wr.getAllWords());
+        WordQuiz daQuiz = new WordQuiz(
+                5,
+                15,
+                new ConsoleReader(new BufferedReader(new InputStreamReader(System.in))),
+                new WordlistReader("C:\\Users\\GRKE\\Desktop\\Hangman\\src\\hangman\\wordlist.txt")
+                );
 
-        //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-       // ConsoleReader reader = new ConsoleReader(br);
-       // System.out.println(reader.readNextChar());
+        daQuiz.playGame();
 
     }
 
