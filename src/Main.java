@@ -16,7 +16,7 @@ public class Main {
                 5,
                 15,
                 new ConsoleReader(new BufferedReader(new InputStreamReader(System.in))),
-                new WordlistReader("C:\\Users\\GRKE\\Desktop\\Hangman\\src\\hangman\\wordlist.txt")
+                new WordlistReader("res/wordlist.txt")
                 );
 
         daQuiz.playGame();
