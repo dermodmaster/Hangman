@@ -9,12 +9,12 @@ import java.util.stream.Collectors;
  * Klasse zum lesen einer Liste mit zu erratenden Wörtern aus einer Textdatei
  * 17.04.2019
  * @author Daniel Marten
- * TODO: relocate wordlist to recourse folder
+ * TODO: relocate wordlist to resource folder
  */
 public class WordlistReader {
 
     private List<String> wordlist;
-    private String src = "C:\\Users\\GRKE\\Desktop\\Hangman\\src\\hangman\\wordlist.txt";
+    private String src;
 
     /**
      * Constructor for WordlistReader
@@ -22,8 +22,8 @@ public class WordlistReader {
      */
     public WordlistReader(String filepath){
         this.wordlist = new ArrayList<>();
-        readListFromFile();
         this.src = filepath;
+        readListFromFile();
     }
 
     /**
