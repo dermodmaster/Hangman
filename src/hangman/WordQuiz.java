@@ -32,7 +32,8 @@ public class WordQuiz {
         this.remainingAttemps = remainingAttemps;
         this.consoleReader = consoleReader;
         this.wordlistReader = wordlistReader;
-        this.quizword = wordlistReader.getRandomWordFromList();
+        this.quizword = wordlistReader.getWordsOfLength(wordLength);
+//        this.quizword = wordlistReader.getRandomWordFromList();
         this.guessedWord = new char[wordLength];
     }
 
@@ -51,7 +52,7 @@ public class WordQuiz {
         System.out.printf("The length of the word is: %d%n", quizword.length());
         System.out.println();
 
-        while ((this.remainingAttemps > 0) || !gameEnd){
+        while (gameEnd == false){
             printGameInfo();
 
             guessedChar = this.consoleReader.readNextChar();
@@ -67,6 +68,7 @@ public class WordQuiz {
             if (!Arrays.toString(guessedWord).contains("_")){
                 gameEnd = true;
                 System.out.println("YOU GUESSED THE WORD !!!");
+                gameEnd = true;
             }
             else if (remainingAttemps == 0){
                 gameEnd = true;

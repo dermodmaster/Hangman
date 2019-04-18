@@ -45,17 +45,22 @@ public class WordlistReader {
      * @param length desired length of the words
      * @return words of desired length as List
      */
-    public List<String> getWordsOfLength(int length){
+//    public List<String> getWordsOfLength(int length){
+    public String getWordsOfLength(int length) {
 
-        List<String> result = new ArrayList<>();
+//        List<String> result = new ArrayList<>();
 
         for (String word : wordlist){
             if (word.length()==length){
-                result.add(word);
+                return word;
+//                result.add(word);
             }
+
+            }
+        return "No";
+
         }
-        return result;
-    }
+//        return result;
 
     public String getRandomWordFromList() {
         int random = (int) (Math.random()*wordlist.size());

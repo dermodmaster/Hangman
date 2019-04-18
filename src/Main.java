@@ -13,7 +13,7 @@ public class Main {
 
 
         WordQuiz daQuiz = new WordQuiz(
-                5,
+                10,
                 15,
                 new ConsoleReader(new BufferedReader(new InputStreamReader(System.in))),
                 new WordlistReader("res/wordlist.txt")
