@@ -71,6 +71,7 @@ public class WordlistReader {
     /**
      * Returns all words from wordlist
      * @return returns all words in the List
+     * TODO: REQUIRED Method is never used
      */
     public List<String> getAllWords() {
         return this.wordlist;

@@ -36,6 +36,9 @@ public class WordQuiz {
 
     /**
      * Starts the hangman game
+     * TODO: close consoleReader in a better manner
+     * TODO: Not a fan of while(true) and break
+     * TODO: A a hangman art
      */
     public void playGame() throws IOException {
 
@@ -44,7 +47,7 @@ public class WordQuiz {
 
         fillGuessedWOrd();
 
-        System.out.println("~~~~~~~~~~~~~GAME START~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~GAME START~~~~~~~~~~");
         System.out.println();
         System.out.printf("The length of the word is: %d%n", quizword.length());
         System.out.println();
@@ -70,6 +73,11 @@ public class WordQuiz {
             }
 
         }
+
+        System.out.println();
+        System.out.println("~~~~~~~~~~GAME END~~~~~~~~~~");
+
+        consoleReader.closeReader();
     }
 
 
@@ -116,9 +124,9 @@ public class WordQuiz {
         //print guessedletters
         StringBuilder builder = new StringBuilder();
         for (char character : guessedLetters){
-            builder.append(character);
+            builder.append(character).append(" ");
         }
-        System.out.printf("Guessed letters: %s%n", builder.toString());
+        System.out.printf("Your guesses: %s%n", builder.toString());
 
         // print the current status of the guessedWord
         builder = new StringBuilder();
@@ -126,6 +134,9 @@ public class WordQuiz {
             builder.append(c);
         }
         System.out.printf("Quizword: %s%n", builder.toString());
+
+        // Spaces the output
+        System.out.println();
 
     }
 

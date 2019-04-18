@@ -30,12 +30,19 @@ public class ConsoleReader {
         String character_string = "";
         char character;
 
-        System.out.println("Take a guess: ");
+        System.out.print("Take a guess: ");
 
         character_string = this.reader.readLine();
 
         if (character_string.length() > 1) System.out.println("More than 1 char as input detected: taking first char!");
-        if (character_string.isEmpty()) System.out.println("Empy input!");
+        if (character_string.isEmpty()){
+            System.out.println("Empty input! If you enter nothing again you will exit.");
+            System.out.print("Take a guess: ");
+            if ((character_string=reader.readLine()).isEmpty() ) throw new IOException("Empty input! Now exiting...");
+        }
+
+        // Spaces the output
+        System.out.println();
 
         character = character_string.charAt(0);
         return character;
