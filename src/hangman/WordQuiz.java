@@ -61,8 +61,8 @@ public class WordQuiz {
 
             if (compareInput(guessedChar) == 1){
                 for (int i = 0; i < quizword.length(); i++){
-                    if (quizword.charAt(i) == guessedChar){
-                        uncover(guessedChar, i);
+                    if (quizword.toLowerCase().charAt(i) == Character.toLowerCase(guessedChar)) {
+                        uncover(quizword.charAt(i) , i);
                     }
                 }
             }
