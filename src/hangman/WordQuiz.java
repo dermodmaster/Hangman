@@ -7,9 +7,6 @@ import java.util.Arrays;
  * WordQuiz is the main class for the hangman game
  * 17.04.2019
  * @author Daniel Marten
- * TODO: What happens if the wordlist is empty
- * TODO: if you enter a char it will only uncover one --> can never win :(
- * TODO: uncover is never used
  */
 public class WordQuiz {
 
