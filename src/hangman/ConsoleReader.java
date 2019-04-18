@@ -6,7 +6,7 @@ import java.io.IOException;
 /**
  * Klasse zum Lesen eines Zeichen von der eingabe
  * 17.04.2019
- * @author Daniel Marten
+ * @author Daniel Marten, Maximilian Frömelt, Ruben Klinksiek
  */
 public class ConsoleReader {
 
@@ -35,7 +35,7 @@ public class ConsoleReader {
         character_string = this.reader.readLine();
 
         if (character_string.length() > 1) System.out.println("More than 1 char as input detected: taking first char!");
-        if (character_string.isEmpty())throw new IOException("Bad input!");
+        if (character_string.isEmpty()) System.out.println("Empy input!");
 
         character = character_string.charAt(0);
         return character;
