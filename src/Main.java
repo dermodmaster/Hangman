@@ -9,12 +9,12 @@ import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, NoSuchFieldException {
 
 
         WordQuiz daQuiz = new WordQuiz(
                 10,
-                15,
+                10,
                 new ConsoleReader(new BufferedReader(new InputStreamReader(System.in))),
                 new WordlistReader("res/wordlist.txt")
         );
