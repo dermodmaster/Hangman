@@ -27,13 +27,13 @@ public class WordQuiz {
      * @param consoleReader Console Reader
      * @param wordlistReader Wordlist Reader
      */
-    public WordQuiz(int wordLength, int remainingAttemps, ConsoleReader consoleReader, WordlistReader wordlistReader){
-        this.guessedLetters = new char[remainingAttemps];
+    public WordQuiz(int wordLength, int remainingAttemps, ConsoleReader consoleReader, WordlistReader wordlistReader) throws NoSuchFieldException {
+        this.guessedLetters = new char[remainingAttemps + wordLength];
         this.remainingAttemps = remainingAttemps;
         this.consoleReader = consoleReader;
         this.wordlistReader = wordlistReader;
-        this.quizword = wordlistReader.getWordsOfLength(wordLength);
-//        this.quizword = wordlistReader.getRandomWordFromList();
+        //this.quizword = wordlistReader.getWordsOfLength(wordLength);
+        this.quizword = wordlistReader.getRandomWordFromList(wordLength);
         this.guessedWord = new char[wordLength];
     }
 
@@ -42,7 +42,6 @@ public class WordQuiz {
      */
     public void playGame() throws IOException {
 
-        boolean gameEnd = false;
         char guessedChar;
         int counter = 0;
 
@@ -53,35 +52,27 @@ public class WordQuiz {
         System.out.printf("The length of the word is: %d%n", quizword.length());
         System.out.println();
 
-        while (gameEnd == false){
+        while (true){
             printGameInfo();
 
             guessedChar = this.consoleReader.readNextChar();
             guessedLetters[counter] = guessedChar;
 
-            if (compareInput(guessedChar) == 1){
-                for (int i = 0; i < quizword.length(); i++){
-                    if (quizword.toLowerCase().charAt(i) == Character.toLowerCase(guessedChar)) {
-                        uncover(quizword.charAt(i) , i);
-                    }
-                }
+            if (compareInput(guessedChar) == 0) {
+                this.remainingAttemps--;
             }
+            counter++;
 
             if (!Arrays.toString(guessedWord).contains("_")){
-                gameEnd = true;
                 System.out.println("YOU GUESSED THE WORD !!!");
-                gameEnd = true;
+                break;
             }
             else if (remainingAttemps == 0){
-                gameEnd = true;
-                System.out.println("YOU HAVE TO ATTEMPS LEFT. YOU LOOSE !!!");
+                System.out.println("YOU HAVE 0 ATTEMPS LEFT. YOU LOOSE !!!");
+                break;
             }
 
-            this.remainingAttemps--;
-            counter++;
         }
-
-
     }
 
 
@@ -92,16 +83,19 @@ public class WordQuiz {
      * @return 1=equals, 0=not equal, //-1= error
      */
     protected int compareInput(char character){
-        try{
-            String search = String.valueOf(character).toLowerCase();
-            if (this.quizword.toLowerCase().contains(search))
-                return 1;
-            else {
-                return 0;
+        String search = String.valueOf(character).toLowerCase();
+        if (this.quizword.toLowerCase().contains(search)) {
+
+            for (int i = 0; i < quizword.length(); i++) {
+                if (quizword.toLowerCase().charAt(i) == Character.toLowerCase(character)) {
+                    uncover(quizword.charAt(i), i);
+                }
             }
+
+            return 1;
         }
-        catch (Exception e){
-            return -1;
+        else {
+            return 0;
         }
     }
 

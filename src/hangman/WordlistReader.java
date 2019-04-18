@@ -10,7 +10,6 @@ import java.util.List;
  * Klasse zum lesen einer Liste mit zu erratenden Wörtern aus einer Textdatei
  * 17.04.2019
  * @author Daniel Marten
- * TODO: relocate wordlist to resource folder
  */
 public class WordlistReader {
 
@@ -24,7 +23,8 @@ public class WordlistReader {
     public WordlistReader(String file) throws IOException {
         this.wordlist = new ArrayList<>();
         this.file = file;
-        readListFromFile();
+        if (!readListFromFile())
+            throw new IOException("Exception on file read");
     }
 
     /**
@@ -45,26 +45,27 @@ public class WordlistReader {
      * @param length desired length of the words
      * @return words of desired length as List
      */
-//    public List<String> getWordsOfLength(int length){
-    public String getWordsOfLength(int length) {
+    public List<String> getWordsOfLength(int length) throws NoSuchFieldException {
 
-//        List<String> result = new ArrayList<>();
+        List<String> result = new ArrayList<>();
 
         for (String word : wordlist){
             if (word.length()==length){
-                return word;
-//                result.add(word);
+                result.add(word);
             }
-
-            }
-        return "No";
-
         }
-//        return result;
 
-    public String getRandomWordFromList() {
-        int random = (int) (Math.random()*wordlist.size());
-        return wordlist.get(random);
+        if (result.size() == 0)
+            throw new NoSuchFieldException("No Word of this length found!");
+        return result;
+
+    }
+
+
+    public String getRandomWordFromList(int wordLength) throws NoSuchFieldException {
+        List<String> tmp = getWordsOfLength(wordLength);
+        int random = (int) (Math.random()*tmp.size());
+        return tmp.get(random);
     }
 
     /**
