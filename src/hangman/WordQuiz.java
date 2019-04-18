@@ -44,6 +44,7 @@ public class WordQuiz {
 
         boolean gameEnd = false;
         char guessedChar;
+        int counter = 0;
 
         fillGuessedWOrd();
 
@@ -56,6 +57,7 @@ public class WordQuiz {
             printGameInfo();
 
             guessedChar = this.consoleReader.readNextChar();
+            guessedLetters[counter] = guessedChar;
 
             if (compareInput(guessedChar) == 1){
                 for (int i = 0; i < quizword.length(); i++){
@@ -76,6 +78,7 @@ public class WordQuiz {
             }
 
             this.remainingAttemps--;
+            counter++;
         }
 
 
@@ -139,7 +142,7 @@ public class WordQuiz {
      * Method for filling guessedWord with _
      */
     private void fillGuessedWOrd(){
-        for (int i = 0; i < guessedWord.length; i++){
+        for (int i = 0; i < quizword.length(); i++){
             this.guessedWord[i] = '_';
         }
     }
