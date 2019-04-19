@@ -71,8 +71,10 @@ public class WordQuiz {
             System.out.println(); // Spaces the output
 
             // check if its already been guessed, if not, add it
-            if (!alreadyGuessed(guessedChar))
+            if (!alreadyGuessed(guessedChar)) {
                 guessedLetters[guessedLetterIndex] = guessedChar;
+                guessedLetterIndex++;
+            }
 
             // wrong guess
             if (compareInput(guessedChar) == 0)
@@ -93,7 +95,6 @@ public class WordQuiz {
                 break;
             }
 
-            guessedLetterIndex++;
         }
 
 
