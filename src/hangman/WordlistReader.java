@@ -60,7 +60,12 @@ public class WordlistReader {
 
     }
 
-
+    /**
+     * Retrieves a random word of the specified length from wordlist
+     * @param wordLength length of the word
+     * @return word of the length
+     * @throws NoSuchFieldException Couldn't find word matching request
+     */
     public String getRandomWordWithLengthFromList(int wordLength) throws NoSuchFieldException {
         List<String> tmp = getWordsOfLength(wordLength);
         int random = (int) (Math.random()*tmp.size());

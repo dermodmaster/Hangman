@@ -26,7 +26,7 @@ public class ConsoleReader {
      */
     public char readNextChar() throws IOException {
 
-        String character_string = this.reader.readLine();
+        String character_string = reader.readLine();
 
         if (character_string.isEmpty()) {
             throw new IOException("Empty input!");

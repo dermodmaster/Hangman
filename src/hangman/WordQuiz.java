@@ -9,6 +9,8 @@ import static hangman.WordQuizAsciiArt.printArt;
  * WordQuiz is the main class for the hangman game
  * 17.04.2019
  * @author Daniel Marten, Maximilian Frömelt, Ruben Klinksiek
+ * TODO: Check if JAVADOC is in english everywhere
+ * TODO: JAVADOC for public attributes
  */
 public class WordQuiz {
 
@@ -29,8 +31,6 @@ public class WordQuiz {
      */
     public WordQuiz(int wordLength, int remainingAttempts, ConsoleReader consoleReader, WordlistReader wordlistReader) throws NoSuchFieldException {
         this.guessedLetters = new char[remainingAttempts + wordLength];
-        Arrays.fill(guessedLetters, ' ');
-
         this.remainingAttemps = remainingAttempts;
         this.consoleReader = consoleReader;
         this.wordlistReader = wordlistReader;
@@ -40,7 +40,6 @@ public class WordQuiz {
 
     /**
      * Starts the hangman game
-     * TODO: A a hangman ASCII art
      */
     public void playGame() {
 
@@ -49,10 +48,12 @@ public class WordQuiz {
         fillGuessedWOrd();
         guessedWord[0] = quizword.charAt(0); // reveal first letter
 
-        System.out.printf("~~~~~~~~~~GAME START~~~~~~~~~~%nThe length of the word is: %d%n%n", quizword.length());
+        System.out.println("~~~~~~~~~~GAME START~~~~~~~~~~");
+        System.out.println("The length of the word is: " + quizword.length() );
 
 
         while (true){
+
             printGameInfo();
 
             // Get char from input
@@ -65,7 +66,7 @@ public class WordQuiz {
                         break;
                     else
                         System.out.println("not a valid input, try again: ");
-                } catch (IOException ex) {}
+                } catch (IOException ignored) {}
             }
 
             System.out.println(); // Spaces the output
