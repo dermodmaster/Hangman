@@ -14,7 +14,7 @@ public class ConsoleReader {
 
     /**
      * Constructor for Console Reader
-     * @param br BufferedReader (with InputStreamReader, System.in)
+     * @param br BufferedReader (ideally with InputStreamReader, System.in)
      */
     public ConsoleReader(BufferedReader br){
         this.reader = br;
@@ -24,11 +24,11 @@ public class ConsoleReader {
      * Reads and then returns the next char from user input
      * @return next char
      * TODO: Maybe exclude numbers fom input
+     * TODO: If input is a guessed word maybe subtract the length of the input from remainingAttempts instead of just taking the first letter...
      */
     public char readNextChar() throws IOException {
 
         String character_string = "";
-        char character;
 
         System.out.print("Take a guess: ");
 
@@ -44,8 +44,7 @@ public class ConsoleReader {
         // Spaces the output
         System.out.println();
 
-        character = character_string.charAt(0);
-        return character;
+        return character_string.charAt(0);
     }
 
     /**

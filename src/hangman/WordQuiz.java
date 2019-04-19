@@ -36,14 +36,18 @@ public class WordQuiz {
 
     /**
      * Starts the hangman game
-     * TODO: close consoleReader in a better manner
-     * TODO: Not a fan of while(true) and break
+     * @throws IOException IOException
+     * TODO: Reveal first letter of quizword?
+     * TODO: Close consoleReader in a better manner
+     * TODO: Maybe convert guessedLetters into Set
+     * TODO: Outsource some if statements into methods
      * TODO: A a hangman art
      */
     public void playGame() throws IOException {
 
         char guessedChar;
-        int counter = 0;
+        boolean gameEnd = false;
+        int guessedLetterIndex = 0;
 
         fillGuessedWOrd();
 
@@ -52,24 +56,24 @@ public class WordQuiz {
         System.out.printf("The length of the word is: %d%n", quizword.length());
         System.out.println();
 
-        while (true){
+        while (!gameEnd){
             printGameInfo();
 
             guessedChar = this.consoleReader.readNextChar();
-            guessedLetters[counter] = guessedChar;
+            guessedLetters[guessedLetterIndex] = guessedChar;
 
             if (compareInput(guessedChar) == 0) {
                 this.remainingAttemps--;
             }
-            counter++;
+            guessedLetterIndex++;
 
             if (!Arrays.toString(guessedWord).contains("_")){
-                System.out.println("YOU GUESSED THE WORD !!!");
-                break;
+                System.out.printf("CONGRATULATIONS! YOU GUESSED THE WORD !!! %s%n", quizword);
+                gameEnd = true;
             }
-            else if (remainingAttemps == 0){
-                System.out.println("YOU HAVE 0 ATTEMPS LEFT. YOU LOOSE !!!");
-                break;
+            else if (remainingAttemps == 0 & !gameEnd){
+                System.out.println("YOU HAVE 0 ATTEMPTS LEFT. YOU LOOSE !!!");
+                gameEnd = true;
             }
 
         }
@@ -108,6 +112,7 @@ public class WordQuiz {
      * Replaces the _ at a specified index in guessedWord
      * @param character character to replace _
      * @param index index of the guessedWord
+     * TODO: uncover is juts used once because of good intent
      */
     protected void uncover(char character, int index){
         this.guessedWord[index] = character;
