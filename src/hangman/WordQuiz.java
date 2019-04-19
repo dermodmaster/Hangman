@@ -3,6 +3,8 @@ package hangman;
 import java.io.IOException;
 import java.util.Arrays;
 
+import static hangman.WordQuizAsciiArt.printArt;
+
 /**
  * WordQuiz is the main class for the hangman game
  * 17.04.2019
@@ -75,6 +77,8 @@ public class WordQuiz {
             // wrong guess
             if (compareInput(guessedChar) == 0)
                 remainingAttemps--;
+
+            printArt(remainingAttemps);
 
             // win condition
             if (!String.valueOf(guessedWord).contains("_")){
