@@ -26,7 +26,7 @@ public class Main {
 
 
         WordQuiz daQuiz = new WordQuiz(
-                10,
+                5,
                 10,
                 new ConsoleReader(new BufferedReader(new InputStreamReader(System.in))),
                 new WordlistReader("res/wordlist.txt")

@@ -45,7 +45,7 @@ public class WordlistReader {
      * @param length desired length of the words
      * @return words of desired length as List
      */
-    public List<String> getWordsOfLength(int length) throws NoSuchFieldException {
+    public List<String> getWordsOfLength(int length) throws IOException {
 
         List<String> result = new ArrayList<>();
 
@@ -55,14 +55,14 @@ public class WordlistReader {
             }
         }
 
-        if (result.size() == 0)
-            throw new NoSuchFieldException("No Word of this length found!");
+        if (result.size() == 0) throw new IOException("No Word of this length found!");
+
         return result;
 
     }
 
 
-    public String getRandomWordFromList(int wordLength) throws NoSuchFieldException {
+    public String getRandomWordWithLengthFromList(int wordLength) throws IOException {
         List<String> tmp = getWordsOfLength(wordLength);
         int random = (int) (Math.random()*tmp.size());
         return tmp.get(random);
