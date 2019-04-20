@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Klasse zum lesen einer Liste mit zu erratenden Wörtern aus einer Textdatei
+ * Class to read all Words from a file (words separated by line)
  * 17.04.2019
  * @author Daniel Marten, Maximilian Frömelt, Ruben Klinksiek
  */

@@ -21,7 +21,7 @@ public class ConsoleReader {
     }
 
     /**
-     * Reads and then returns the next char from user input
+     * Reads and then returns the next char BufferedReader (danger: flushes rest of the line from BR!)
      * @return next char
      */
     public char readNextChar() throws IOException {
@@ -41,6 +41,7 @@ public class ConsoleReader {
 
     /**
      * Function for closing the BufferedReader
+     * Only use this if you don't close the BufferedReader externally
      * @throws IOException There is no reader
      */
     public void closeReader() throws IOException {

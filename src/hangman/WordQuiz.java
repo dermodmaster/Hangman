@@ -9,7 +9,6 @@ import static hangman.WordQuizAsciiArt.printArt;
  * WordQuiz is the main class for the hangman game
  * 17.04.2019
  * @author Daniel Marten, Maximilian Frömelt, Ruben Klinksiek
- * TODO: Check if JAVADOC is in english everywhere
  * TODO: JAVADOC for public attributes
  */
 public class WordQuiz {
@@ -117,7 +116,7 @@ public class WordQuiz {
     /**
      * Compares the input to the quizword
      * @param character character
-     * @return 1=equals, 0=not equal, //-1= error
+     * @return 1=character in quizword, 0=char not in quizword
      */
     protected int compareInput(char character){
         String search = String.valueOf(character).toLowerCase();

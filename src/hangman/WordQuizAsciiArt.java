@@ -1,14 +1,14 @@
 package hangman;
 
 /**
- * Class for printing ACII art
+ * Class for printing ASCII art
  * 19.04.2019
- * @author Daniel Marten, Maximilian Frömelt, Ruben Klinksiek
+ * @author Maximilian Frömelt
  */
 public class WordQuizAsciiArt {
 
     /**
-     * String for ACII hangman art
+     * String for ASCII hangman art
      */
     private static String[] art = {
                     "                \n" +          // 0
@@ -158,7 +158,7 @@ public class WordQuizAsciiArt {
     }
 
     /**
-     * Prints the art
+     * Prints the corresponding "image" for the remaining attempts.
      * @param remainingAttempts remaining Attempts
      */
     public static void printArt(int remainingAttempts) {
