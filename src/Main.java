@@ -24,18 +24,19 @@ public class Main {
      */
     public static void main(String[] args) throws IOException, NoSuchFieldException {
 
+        ConsoleReader cr = new ConsoleReader(new BufferedReader(new InputStreamReader(System.in)));
+        WordlistReader wr = new WordlistReader("res/wordlist.txt");
 
         WordQuiz daQuiz = new WordQuiz(
-                5,
                 10,
-                new ConsoleReader(new BufferedReader(new InputStreamReader(System.in))),
-                new WordlistReader("res/wordlist.txt")
+                10,
+                cr,
+                wr
         );
 
         daQuiz.playGame();
 
+        cr.closeReader();
     }
-
-
 
 }

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Klasse zum lesen einer Liste mit zu erratenden Wörtern aus einer Textdatei
  * 17.04.2019
- * @author Daniel Marten
+ * @author Daniel Marten, Maximilian Frömelt, Ruben Klinksiek
  */
 public class WordlistReader {
 
@@ -44,9 +44,9 @@ public class WordlistReader {
      * Returns all words of the specified length as a List
      * @param length desired length of the words
      * @return words of desired length as List
+     * @throws NoSuchFieldException if not a single word of this length is found
      */
-    public List<String> getWordsOfLength(int length) throws IOException {
-
+    public List<String> getWordsOfLength(int length) throws NoSuchFieldException {
         List<String> result = new ArrayList<>();
 
         for (String word : wordlist){
@@ -55,14 +55,18 @@ public class WordlistReader {
             }
         }
 
-        if (result.size() == 0) throw new IOException("No Word of this length found!");
-
+        if (result.size() == 0) throw new NoSuchFieldException("No Word of this length found!");
         return result;
 
     }
 
-
-    public String getRandomWordWithLengthFromList(int wordLength) throws IOException {
+    /**
+     * Retrieves a random word of the specified length from wordlist
+     * @param wordLength length of the word
+     * @return word of the length
+     * @throws NoSuchFieldException Couldn't find word matching request
+     */
+    public String getRandomWordWithLengthFromList(int wordLength) throws NoSuchFieldException {
         List<String> tmp = getWordsOfLength(wordLength);
         int random = (int) (Math.random()*tmp.size());
         return tmp.get(random);
@@ -71,7 +75,6 @@ public class WordlistReader {
     /**
      * Returns all words from wordlist
      * @return returns all words in the List
-     * TODO: REQUIRED Method is never used
      */
     public List<String> getAllWords() {
         return this.wordlist;
