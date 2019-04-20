@@ -7,14 +7,13 @@ import java.util.Date;
  */
 public class Aenderung {
 
-    // Date of the change
     private Date datum;
-    // Reason of the change
     private String grund;
+    private Anforderung anforderung;
+    private Author author;
 
     /**
      * Constructor for Aenderung:
-     *
      */
     public Aenderung(){
 

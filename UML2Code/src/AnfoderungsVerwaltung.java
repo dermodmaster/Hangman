@@ -1,16 +1,17 @@
 /**
- * Class Anforderungsverwaltung:
- *
+ * Class Anforderungsverwaltung: manages Anforderung
  * 18.04.2019
  * @author Daniel Marten, Maximilian Frömelt, Ruben Klinksiek
  */
-public class AnforderungsVerwaltung {
+public class AnfoderungsVerwaltung {
+
+    private Anforderung anforderung;
+    private Aenderung aendderung;
 
     /**
-     * Constructor for AnforderungsVerwaltung:
-     *
+     * Constructor for AnforderungsVerwaltung
      */
-    public AnforderungsVerwaltung(){
+    public AnfoderungsVerwaltung(){
 
     }
 
@@ -24,7 +25,7 @@ public class AnforderungsVerwaltung {
 
     /**
      * Adds an Aenderung
-     * @param change
+     * @param change Aenderung
      */
     public void aenderungHinzufuegen(Aenderung change){
 

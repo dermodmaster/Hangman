@@ -3,7 +3,7 @@
  * 18.04.2019
  * @author Daniel Marten, Maximilian Frömelt, Ruben Klinksiek
  */
-public class Autor {
+public class Author {
 
     private int personalNumber;
     private String name;
@@ -13,7 +13,7 @@ public class Autor {
      * @param pNumber personal Number
      * @param name name of the Autor
      */
-    public Autor(int pNumber, String name){
+    public Author(int pNumber, String name){
 
     }
 

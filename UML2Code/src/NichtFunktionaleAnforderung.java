@@ -1,6 +1,5 @@
 /**
- * Class NichtFunktionaleAnforderung:
- *
+ * Class NichtFunktionaleAnforderung: a type of Anforderung
  * 18.04.2019
  * @author Daniel Marten, Maximilian Frömelt, Ruben Klinksiek
  */
