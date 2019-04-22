@@ -13,7 +13,7 @@ public class Aenderung {
     //private Author author;
 
     /**
-     * Constructor for Aenderung:
+     * Default Constructor for Aenderung
      */
     public Aenderung(){
 

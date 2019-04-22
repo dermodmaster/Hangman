@@ -11,7 +11,7 @@ public class AnfoderungsVerwaltung {
     //private List<Aenderung> aendderung;
 
     /**
-     * Constructor for AnforderungsVerwaltung
+     * Default Constructor for AnforderungsVerwaltung
      */
     public AnfoderungsVerwaltung(){
 
