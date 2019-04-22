@@ -9,8 +9,8 @@ public class Aenderung {
 
     private Date datum;
     private String grund;
-    private Anforderung anforderung;
-    private Author author;
+    //private Anforderung anforderung;
+    //private Author author;
 
     /**
      * Constructor for Aenderung:

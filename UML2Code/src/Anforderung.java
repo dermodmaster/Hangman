@@ -5,7 +5,7 @@
  */
 public abstract class Anforderung {
 
-    private Author ersteller;
+    //private Author ersteller;
     protected int id;
     protected String text;
 

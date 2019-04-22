@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Class Anforderungsverwaltung: manages Anforderung
  * 18.04.2019
@@ -5,8 +7,8 @@
  */
 public class AnfoderungsVerwaltung {
 
-    private Anforderung anforderung;
-    private Aenderung aendderung;
+    //private List<Anforderung> anforderung;
+    //private List<Aenderung> aendderung;
 
     /**
      * Constructor for AnforderungsVerwaltung
