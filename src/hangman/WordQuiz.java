@@ -3,13 +3,13 @@ package hangman;
 import java.io.IOException;
 import java.util.Arrays;
 
+import static hangman.WordQuizAsciiArt.printArt;
+
 /**
  * WordQuiz is the main class for the hangman game
  * 17.04.2019
- * @author Daniel Marten
- * TODO: What happens if the wordlist is empty
- * TODO: if you enter a char it will only uncover one --> can never win :(
- * TODO: uncover is never used
+ * @author Daniel Marten, Maximilian Frömelt, Ruben Klinksiek
+ * TODO: JAVADOC for public attributes
  */
 public class WordQuiz {
 
@@ -23,80 +23,114 @@ public class WordQuiz {
     /**
      * Constructor for WordQuiz
      * @param wordLength length of the word to guess
-     * @param remainingAttemps remainig Attemps
+     * @param remainingAttempts remainig Attemps
      * @param consoleReader Console Reader
      * @param wordlistReader Wordlist Reader
+     * @throws NoSuchFieldException if no word of wordLength are found
      */
-    public WordQuiz(int wordLength, int remainingAttemps, ConsoleReader consoleReader, WordlistReader wordlistReader){
-        this.guessedLetters = new char[remainingAttemps];
-        this.remainingAttemps = remainingAttemps;
+    public WordQuiz(int wordLength, int remainingAttempts, ConsoleReader consoleReader, WordlistReader wordlistReader) throws NoSuchFieldException {
+        this.guessedLetters = new char[remainingAttempts + wordLength];
+        this.remainingAttemps = remainingAttempts;
         this.consoleReader = consoleReader;
         this.wordlistReader = wordlistReader;
-        this.quizword = wordlistReader.getRandomWordFromList();
+        this.quizword = wordlistReader.getRandomWordWithLengthFromList(wordLength);
         this.guessedWord = new char[wordLength];
     }
 
     /**
      * Starts the hangman game
      */
-    public void playGame() throws IOException {
+    public void playGame() {
 
-        boolean gameEnd = false;
         char guessedChar;
-
+        int guessedLetterIndex = 0;
         fillGuessedWOrd();
+        guessedWord[0] = quizword.charAt(0); // reveal first letter
 
-        System.out.println("~~~~~~~~~~~~~GAME START~~~~~~~~~~~~~~");
-        System.out.println();
-        System.out.printf("The length of the word is: %d%n", quizword.length());
-        System.out.println();
+        System.out.println("~~~~~~~~~~GAME START~~~~~~~~~~");
+        System.out.println("The length of the word is: " + quizword.length() );
 
-        while ((this.remainingAttemps > 0) || !gameEnd){
+
+        while (true){
+
             printGameInfo();
 
-            guessedChar = this.consoleReader.readNextChar();
+            // Get char from input
+            System.out.print("Take a guess: ");
 
-            if (compareInput(guessedChar) == 1){
-                for (int i = 0; i < quizword.length(); i++){
-                    if (quizword.charAt(i) == guessedChar){
-                        uncover(guessedChar, i);
-                    }
-                }
+            while(true) {
+                try { /* try until successful, possibly implement exit after n fails */
+                    guessedChar = this.consoleReader.readNextChar();
+                    if (String.valueOf(guessedChar).matches("[a-zA-Z]"))
+                        break;
+                    else
+                        System.out.println("not a valid input, try again: ");
+                } catch (IOException ignored) {}
             }
 
-            if (!Arrays.toString(guessedWord).contains("_")){
-                gameEnd = true;
-                System.out.println("YOU GUESSED THE WORD !!!");
+            System.out.println(); // Spaces the output
+
+            // check if its already been guessed, if not, add it
+            if (!alreadyGuessed(guessedChar)) {
+                guessedLetters[guessedLetterIndex] = guessedChar;
+                guessedLetterIndex++;
             }
+
+            // wrong guess
+            if (compareInput(guessedChar) == 0)
+                remainingAttemps--;
+
+            printArt(remainingAttemps);
+
+            // win condition
+            if (!String.valueOf(guessedWord).contains("_")){
+                System.out.printf("The quizzword is: %s%n", quizword);
+                System.out.println("CONGRATULATIONS! YOU GUESSED THE WORD !!!");
+                break;
+            }
+
+            // lose condition
             else if (remainingAttemps == 0){
-                gameEnd = true;
-                System.out.println("YOU HAVE TO ATTEMPS LEFT. YOU LOOSE !!!");
+                System.out.println("YOU HAVE 0 ATTEMPTS LEFT. YOU LOOSE !!!");
+                break;
             }
 
-            this.remainingAttemps--;
         }
 
 
+        System.out.println("\n~~~~~~~~~~GAME END~~~~~~~~~~"); // game end message
     }
 
-
+    /**
+     * Checks whether a char has already been guessed or not
+     * @param guessedChar guessed character
+     * @return whether a char has already been guessed or not
+     */
+    private boolean alreadyGuessed(char guessedChar){
+        if (String.valueOf(guessedLetters).contains(String.valueOf(guessedChar))){
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Compares the input to the quizword
      * @param character character
-     * @return 1=equals, 0=not equal, //-1= error
+     * @return 1=character in quizword, 0=char not in quizword
      */
     protected int compareInput(char character){
-        try{
-            String search = String.valueOf(character).toLowerCase();
-            if (this.quizword.toLowerCase().contains(search))
-                return 1;
-            else {
-                return 0;
+        String search = String.valueOf(character).toLowerCase();
+        if (quizword.toLowerCase().contains(search)) {
+
+            for (int i = 0; i < quizword.length(); i++) {
+                if (quizword.toLowerCase().charAt(i) == Character.toLowerCase(character)) {
+                    uncover(quizword.charAt(i), i);
+                }
             }
+            return 1;
         }
-        catch (Exception e){
-            return -1;
+        else {
+            return 0;
         }
     }
 
@@ -106,7 +140,7 @@ public class WordQuiz {
      * @param index index of the guessedWord
      */
     protected void uncover(char character, int index){
-        this.guessedWord[index] = character;
+        guessedWord[index] = character;
     }
 
     /**
@@ -120,16 +154,20 @@ public class WordQuiz {
         //print guessedletters
         StringBuilder builder = new StringBuilder();
         for (char character : guessedLetters){
-            builder.append(character);
+            builder.append(character).append(" ");
         }
-        System.out.printf("Guessed letters: %s%n", builder.toString());
+        System.out.printf("Your guesses: %s%n", builder.toString());
 
         // print the current status of the guessedWord
+        //System.out.println(String.valueOf(guessedWord));
         builder = new StringBuilder();
         for (char c : guessedWord) {
-            builder.append(c);
+            builder.append(c).append(" ");
         }
         System.out.printf("Quizword: %s%n", builder.toString());
+
+        // Spaces the output
+        System.out.println();
 
     }
 
@@ -137,8 +175,8 @@ public class WordQuiz {
      * Method for filling guessedWord with _
      */
     private void fillGuessedWOrd(){
-        for (int i = 0; i < guessedWord.length; i++){
-            this.guessedWord[i] = '_';
+        for (int i = 0; i < quizword.length(); i++){
+            guessedWord[i] = '_';
         }
     }
 

@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Klasse zum lesen einer Liste mit zu erratenden Wörtern aus einer Textdatei
+ * Class to read all Words from a file (words separated by line)
  * 17.04.2019
- * @author Daniel Marten
- * TODO: relocate wordlist to resource folder
+ * @author Daniel Marten, Maximilian Frömelt, Ruben Klinksiek
  */
 public class WordlistReader {
 
@@ -24,7 +23,8 @@ public class WordlistReader {
     public WordlistReader(String file) throws IOException {
         this.wordlist = new ArrayList<>();
         this.file = file;
-        readListFromFile();
+        if (!readListFromFile())
+            throw new IOException("Exception on file read");
     }
 
     /**
@@ -44,9 +44,9 @@ public class WordlistReader {
      * Returns all words of the specified length as a List
      * @param length desired length of the words
      * @return words of desired length as List
+     * @throws NoSuchFieldException if not a single word of this length is found
      */
-    public List<String> getWordsOfLength(int length){
-
+    public List<String> getWordsOfLength(int length) throws NoSuchFieldException {
         List<String> result = new ArrayList<>();
 
         for (String word : wordlist){
@@ -54,12 +54,22 @@ public class WordlistReader {
                 result.add(word);
             }
         }
+
+        if (result.size() == 0) throw new NoSuchFieldException("No Word of this length found!");
         return result;
+
     }
 
-    public String getRandomWordFromList() {
-        int random = (int) (Math.random()*wordlist.size());
-        return wordlist.get(random);
+    /**
+     * Retrieves a random word of the specified length from wordlist
+     * @param wordLength length of the word
+     * @return word of the length
+     * @throws NoSuchFieldException Couldn't find word matching request
+     */
+    public String getRandomWordWithLengthFromList(int wordLength) throws NoSuchFieldException {
+        List<String> tmp = getWordsOfLength(wordLength);
+        int random = (int) (Math.random()*tmp.size());
+        return tmp.get(random);
     }
 
     /**
